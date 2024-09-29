@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Phoebe Poll</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        button { margin: 10px; padding: 10px 20px; font-size: 16px; }
+        #results { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Is the Black Phoebe Good or Bad?</h1>
+    <button onclick="castVote('good')">Good</button>
+    <button onclick="castVote('bad')">Bad</button>
+    <div id="results"></div>
+
+    <script>
+        let goodVotes = 0;
+        let badVotes = 0;
+
+        function castVote(vote) {
+            if (vote === 'good') goodVotes++;
+            else if (vote === 'bad') badVotes++;
+            updateResults();
+        }
+
+        function updateResults() {
+            const totalVotes = goodVotes + badVotes;
+            const goodPercentage = (goodVotes / totalVotes * 100).toFixed(2);
+            const badPercentage = (badVotes / totalVotes * 100).toFixed(2);
+            
+            document.getElementById('results').innerHTML = `
+                <h2>Poll Results:</h2>
+                <p>Good: ${goodVotes} votes (${goodPercentage}%)</p>
+                <p>Bad: ${badVotes} votes (${badPercentage}%)</p>
+                <p>Total votes: ${totalVotes}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
